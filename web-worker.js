@@ -15,11 +15,7 @@ class WebWorker {
         result = this[func](...args);
       }
 
-      if (
-        typeof result !== null &&
-        typeof result === 'object' &&
-        result['then']
-      ) {
+      if (result && typeof result === 'object' && result['then']) {
         result.then(val => {
           this.trigger('callback', eventName, val);
         });
